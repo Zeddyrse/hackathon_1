@@ -73,7 +73,7 @@ Encore
 //.autoProvidejQuery()
 
 const fullConfig = Encore.getWebpackConfig();
-fullConfig.devServer = 
+fullConfig.devServer = {
     watchFiles: {
         paths: ['templates/**/*.html.twig'],
     },
