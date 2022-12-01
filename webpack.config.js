@@ -59,7 +59,6 @@ Encore
     // enables Sass/SCSS support
     .enableSassLoader()
 
-<<<<<<< HEAD
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
 
@@ -82,28 +81,3 @@ Encore
     };
     module.exports = fullConfig;
     // module.exports = Encore.getWebpackConfig();
-=======
-// uncomment if you use TypeScript
-//.enableTypeScriptLoader()
-
-// uncomment if you use React
-//.enableReactPreset()
-
-// uncomment to get integrity="..." attributes on your script & link tags
-// requires WebpackEncoreBundle 1.4 or higher
-//.enableIntegrityHashes(Encore.isProduction())
-
-// uncomment if you're having problems with a jQuery plugin
-//.autoProvidejQuery()
-
-const fullConfig = Encore.getWebpackConfig();
-fullConfig.devServer = 
-    watchFiles: {
-        paths: ['templates/**/*.html.twig'],
-    },
-};
-
-module.exports = fullConfig;
-
-//module.exports = Encore.getWebpackConfig();
->>>>>>> 765be27b3e8b8b80a5aa1c6c838a6ec01501b788
