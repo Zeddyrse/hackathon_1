@@ -8,6 +8,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use App\Form\TravelType;
+use App\Form\ThemeType;
+
+
 
 class ThemeType extends AbstractType
 {
@@ -15,7 +20,7 @@ class ThemeType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('travel', ChoiceType::class)
+            ->add('themes', ThemeType::class)
         ;
     }
 

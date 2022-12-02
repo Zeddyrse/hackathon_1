@@ -25,17 +25,20 @@ class Travel
     #[ORM\ManyToMany(targetEntity: Theme::class, mappedBy: 'travel')]
     private Collection $themes;
 
-    #[ORM\OneToMany(mappedBy: 'travel', targetEntity: User::class)]
+    #[ORM(mappedBy: 'travel', targetEntity: User::class)]
     private Collection $users;
 
-    #[ORM\OneToMany(mappedBy: 'travel', targetEntity: Location::class)]
-    private Collection $locations;
+    #[ORM\ManyToOne(inversedBy: 'travel')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Location $location = null;
+
 
     public function __construct()
     {
         $this->themes = new ArrayCollection();
         $this->users = new ArrayCollection();
-        $this->locations = new ArrayCollection();
+       
+
     }
 
     public function getId(): ?int
@@ -124,33 +127,19 @@ class Travel
         return $this;
     }
 
-    /**
-     * @return Collection<int, Location>
-     */
-    public function getLocations(): Collection
+    public function getLocation(): ?Location
     {
-        return $this->locations;
+        return $this->location;
     }
 
-    public function addLocation(Location $location): self
+    public function setLocation(?Location $location): self
     {
-        if (!$this->locations->contains($location)) {
-            $this->locations->add($location);
-            $location->setTravel($this);
-        }
+        $this->location = $location;
 
         return $this;
     }
 
-    public function removeLocation(Location $location): self
-    {
-        if ($this->locations->removeElement($location)) {
-            // set the owning side to null (unless already changed)
-            if ($location->getTravel() === $this) {
-                $location->setTravel(null);
-            }
-        }
 
-        return $this;
-    }
+
+ 
 }

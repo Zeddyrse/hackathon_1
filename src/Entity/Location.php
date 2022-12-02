@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LocationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LocationRepository::class)]
@@ -19,9 +21,16 @@ class Location
     #[ORM\Column(length: 255)]
     private ?string $city_name = null;
 
-    #[ORM\ManyToOne(inversedBy: 'locations')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Travel $travel = null;
+    #[ORM\OneToMany(mappedBy: 'location', targetEntity: Travel::class)]
+    private Collection $travel;
+
+  
+
+    public function __construct()
+    {
+        $this->no = new ArrayCollection();
+        $this->travel = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -52,15 +61,35 @@ class Location
         return $this;
     }
 
-    public function getTravel(): ?Travel
+    /**
+     * @return Collection<int, Travel>
+     */
+    public function getTravel(): Collection
     {
         return $this->travel;
     }
 
-    public function setTravel(?Travel $travel): self
+    public function addTravel(Travel $travel): self
     {
-        $this->travel = $travel;
+        if (!$this->travel->contains($travel)) {
+            $this->travel->add($travel);
+            $travel->setLocation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTravel(Travel $travel): self
+    {
+        if ($this->travel->removeElement($travel)) {
+            // set the owning side to null (unless already changed)
+            if ($travel->getLocation() === $this) {
+                $travel->setLocation(null);
+            }
+        }
 
         return $this;
     }
 }
+
+    

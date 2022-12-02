@@ -8,6 +8,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use App\Entity\Travel;
 
 
 class LocationType extends AbstractType
@@ -17,7 +19,7 @@ class LocationType extends AbstractType
         $builder
             ->add('country_name', TextType::class)
             ->add('city_name', TextType::class)
-            ->add('travel', ChoiceType::class)
+            ->add('travel', IntegerType::class)
         ;
     }
 

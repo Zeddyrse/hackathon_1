@@ -7,7 +7,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use App\Form\TravelType;
 
 
 class UserType extends AbstractType
@@ -17,10 +18,10 @@ class UserType extends AbstractType
         $builder
             ->add('firstname', TextType::class)
             ->add('lastname', TextType::class)
-            ->add('age', NumberType::class)
+            ->add('age', IntegerType::class)
             ->add('sex', TextType::class)
             ->add('email', TextType::class)
-            ->add('travel', TextType::class)
+            ->add('travel', IntegerType::class)
         ;
     }
 
