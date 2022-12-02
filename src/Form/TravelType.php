@@ -22,12 +22,12 @@ class TravelType extends AbstractType
         $builder
             ->add('date_start', DateTimeType::class )
             ->add('date_end', DateTimeType::class)
-            ->add('themes', EntityType::class, [
-                  'class' => Theme::class,
-                  'choices' => getName(),
-            ])
-        ;
+            ->add('themes', EntityType::class, array(
+                "class" => "App\Entity\Theme"
+	
+            ));
     }
+    
 
     public function configureOptions(OptionsResolver $resolver): void
     {
