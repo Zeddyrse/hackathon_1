@@ -6,15 +6,18 @@ use App\Entity\Location;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 
 class LocationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('country_name')
-            ->add('city_name')
-            ->add('travel')
+            ->add('country_name', TextType::class)
+            ->add('city_name', TextType::class)
+            ->add('travel', ChoiceType::class)
         ;
     }
 
